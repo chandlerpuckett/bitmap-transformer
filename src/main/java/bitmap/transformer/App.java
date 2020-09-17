@@ -3,12 +3,28 @@
  */
 package bitmap.transformer;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Scanner;
+
 public class App {
     public String getGreeting() {
         return "Hello world.";
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+
+        BufferedImage image = Bitmap.bitmapImport();        // import image
+        BufferedImage rotatedImage = Bitmap.rotate(image);  // rotate image
+
+//        write the transformed file
+        ImageIO.write(rotatedImage,"BMP", new File("src/test/resources/rotateImage.bmp"));
+
         System.out.println(new App().getGreeting());
     }
+
+
 }

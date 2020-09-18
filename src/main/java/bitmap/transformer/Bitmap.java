@@ -6,14 +6,14 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.Buffer;
 
 public class Bitmap {
 
     public static BufferedImage bitmapImport (){
 
         try {
-            BufferedImage image = ImageIO.read(new File("src/main/resources/mario.bmp"));
-            return image;
+            return ImageIO.read(new File("src/main/resources/mario.bmp"));
         } catch (IOException e) {
             System.out.println("DID NOT WORK:");
             e.printStackTrace();
@@ -44,6 +44,21 @@ public class Bitmap {
 
     }
 
+    public static BufferedImage scaleImage (BufferedImage image){
+
+//        Scale Image:
+//        https://blog.idrsolutions.com/2019/05/image-scaling-in-java/
+        
+        final int w = image.getWidth();
+        final int h = image.getHeight();
+
+        BufferedImage scaledImage = new BufferedImage((w * 2),(h * 2), BufferedImage.TYPE_INT_ARGB);
+
+        final AffineTransform at = AffineTransform.getScaleInstance(2.0, 2.0);
+        final AffineTransformOp ato = new AffineTransformOp(at, AffineTransformOp.TYPE_BICUBIC);
+
+        return ato.filter(image, scaledImage);
+    }
 
 
 }

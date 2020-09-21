@@ -20,14 +20,19 @@ public class App {
         BufferedImage image = Bitmap.bitmapImport();
 
 //          rotate image
-        BufferedImage rotatedImage = Bitmap.rotate(image);
+        if (args[0].equals("rotate")){
+            System.out.println("-- rotating --");
+            BufferedImage rotatedImage = Bitmap.rotate(image);
+            ImageIO.write(rotatedImage,"BMP", new File("src/test/resources/rotateImage.bmp"));
+        } else {
+            System.out.println("only rotating right now");
+        }
 
 //          scale the image
         BufferedImage scaledImage = Bitmap.scaleImage(image);
 
 
 //        write the transformed file
-        ImageIO.write(rotatedImage,"BMP", new File("src/test/resources/rotateImage.bmp"));
         ImageIO.write(scaledImage, "BMP", new File("src/test/resources/scaledImage.bmp"));
 
     }

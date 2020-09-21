@@ -60,5 +60,8 @@ public class Bitmap {
         return ato.filter(image, scaledImage);
     }
 
+    public static void grayscale (){
+
+    }
 
 }

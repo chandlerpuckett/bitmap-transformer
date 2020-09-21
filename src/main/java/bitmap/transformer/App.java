@@ -24,6 +24,11 @@ public class App {
             System.out.println("-- rotating --");
             BufferedImage rotatedImage = Bitmap.rotate(image);
             ImageIO.write(rotatedImage,"BMP", new File("src/test/resources/rotateImage.bmp"));
+
+        } else if (args[0].equals("gray")){
+            System.out.println("-- gray stuff --");
+            Bitmap.grayscale();
+
         } else {
             System.out.println("only rotating right now");
         }
